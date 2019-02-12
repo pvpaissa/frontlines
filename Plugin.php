@@ -26,8 +26,8 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Cleanse\Frontlines\Components\Profile'     => 'cleanseFrontlinesProfile',
             'Cleanse\Frontlines\Components\Rankings'    => 'cleanseFrontlinesRankings',
+            'Cleanse\Frontlines\Components\Profile'     => 'cleanseFrontlinesProfile',
             'Cleanse\Frontlines\Components\Install'     => 'cleanseFrontlinesInstall'
         ];
     }
@@ -36,7 +36,6 @@ class Plugin extends PluginBase
     {
         return [
             'filters' => [
-                // A local method, i.e $this->makeTextAllCaps()
                 'yearweek' => [$this, 'makeDateFromYearWeek']
             ]
         ];

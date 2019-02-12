@@ -1,0 +1,52 @@
+{% set rankings = __SELF__.rankings %}
+<div class="basic-page">
+    <div class="container">
+        <div class="page-title">
+            <h1>Frontlines Rankings</h1>
+            <div class="sub-box"></div>
+        </div>
+        <p class="text-white">
+            Data from
+            <a href="http://na.finalfantasyxiv.com/lodestone/ranking/frontline/weekly/201427/"
+               target="_blank">July 7, 2014</a> through
+            <a href="http://na.finalfantasyxiv.com/lodestone/ranking/frontline/weekly/{{ year_week }}/"
+               target="_blank">{{ last_update|date("F j, Y") }}</a>.
+        </p>
+
+        <div class="table-responsive-sm">
+            <table id="rankings" class="table text-white">
+                <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Data Center</th>
+                    <th>Server</th>
+                    <th>Wins</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for frontline in rankings %}
+                <tr class="clickable" data-href="/character/{{ frontline.player.character }}/frontlines">
+                    <td>{% if frontline.rank == 8675309 %} -- {% else %} {{ frontline.rank }} {% endif %}</td>
+                    <td>
+                        <a href="/character/{{ frontline.player.character }}/frontlines">
+                            <strong>{{ frontline.player.name }}</strong></a>
+                    </td>
+                    <td class="hidden-md-down">{{ frontline.player.data_center }}</td>
+                    <td class="hidden-md-down">{{ frontline.player.server }}</td>
+                    <td>{{ frontline.wins }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td class="no-data">There are no rankings recorded.</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <nav class="cleanse-news" aria-label="Frontlines pagination.">
+                {{ rankings.render|raw }}
+            </nav>
+        </div>
+    </div>
+</div>

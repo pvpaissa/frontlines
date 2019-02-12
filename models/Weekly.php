@@ -11,8 +11,8 @@ use Model;
  * @property integer $player_id
  * @property integer $rank
  * @property integer $wins
- * @property string  $percent
- * @property integer $matches
+ * @property string  $percent -- deprecated
+ * @property integer $matches -- deprecated
  * @property string  $week
  */
 class Weekly extends Model
@@ -23,8 +23,8 @@ class Weekly extends Model
         'player_id',
         'rank',
         'wins',
-        'percent',
-        'matches',
+        'percent', // -- deprecated
+        'matches', // -- deprecated
         'week'
     ];
 

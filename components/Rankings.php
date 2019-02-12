@@ -9,6 +9,7 @@ use Cleanse\Frontlines\Models\Overall;
 class Rankings extends ComponentBase
 {
     public $rankings;
+    public $last;
 
     public function componentDetails()
     {
@@ -21,6 +22,8 @@ class Rankings extends ComponentBase
     public function onRun()
     {
         $this->rankings = $this->page['rankings'] = $this->loadRankings();
+        $this->last = $this->page['last_update'] = $this->getLastUpdate();
+        $this->last = $this->page['year_week'] = $this->getYW();
     }
 
     public function loadRankings()
@@ -43,5 +46,15 @@ class Rankings extends ComponentBase
         }
 
         $this->page['items'] = $server;
+    }
+
+    private function getLastUpdate()
+    {
+        return date('Y-m-d', strtotime('last monday -7 days'));
+    }
+
+    private function getYW()
+    {
+        return date('YW', strtotime('last sunday -7 days'));
     }
 }
