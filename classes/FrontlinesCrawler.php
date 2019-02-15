@@ -31,10 +31,10 @@ class FrontlinesCrawler
         $crawler = new Crawler($dataCenterPlayers);
 
         // If this week has no data, get the next week and rerun.
-        if ($crawler->filterXPath('//*[@id="ranking"]/div[4]/div[2]/div/p[2]')->count()) {
+        if ($crawler->filterXPath('//*[@id="ranking"]/div[4]/div[2]/div/p[@class="ranking__no_data"]')->count()) {
             Log::info('Skipping week: '.$this->week.' on server '.$this->server);
 
-            $nextPageNode = '//*[@id="ranking"]/div[4]/div[2]/div/div[1]/a[2]';
+            $nextPageNode = '//*[@id="ranking"]/div[4]/div[2]/div/div/a[contains(@class, \'ranking__calendar__next\')]';
 
             if ($crawler->filterXPath($nextPageNode)->count()) {
                 $segments = explode('/', rtrim($crawler->filterXPath($nextPageNode)->attr('href'), '/'));
@@ -68,7 +68,7 @@ class FrontlinesCrawler
                 //Name and Character ID
                 $player['name'] = $node->filterXPath('//tr/td[3]/h4')->text();
 
-                $player['pvp_rank'] = 0;
+                //$player['pvp_rank'] = 0;
 
                 //GC
                 if ($node->filterXPath('//tr/td[4]/img')->count()) {

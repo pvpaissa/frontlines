@@ -24,7 +24,7 @@ class UpdateFrontlines
     {
         Overall::firstOrCreate([
             'player_id' => $player
-            ]);
+        ]);
     }
 
     private function addWeek($player)

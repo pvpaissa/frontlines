@@ -45,13 +45,9 @@ class FrontlinesHelper
 
     private function crawl($week)
     {
-        $url = "http://na.finalfantasyxiv.com/lodestone/ranking/frontline/weekly/{$week}/";
+        $url = "https://na.finalfantasyxiv.com/lodestone/ranking/frontline/weekly/{$week}/";
 
-        if ($week == '201427') {
-            $nextPageNode = '//*[@id="ranking"]/div[4]/div[2]/div/div[1]/a';
-        } else {
-            $nextPageNode = '//*[@id="ranking"]/div[4]/div[2]/div/div[1]/a[2]';
-        }
+        $nextPageNode = '//*[@id="ranking"]/div[4]/div[2]/div/div[1]/a[contains(@class, \'ranking__calendar__next\')]';
 
         $lastWeekStandings = $this->guzzle($url);
 
