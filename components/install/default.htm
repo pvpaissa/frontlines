@@ -5,8 +5,14 @@
             <div class="sub-box"></div>
         </div>
 
-        <div class="cleanse-frontlines">
-            {{ message }}
+        <div class="text-{{ install_status }}">
+            {{ install_message }}
+
+            {% if install_status == 'success' %}
+            <div class="mt-3">
+                <a href="/frontlines/update-with-queues" class="btn btn-outline-primary">Update Next</a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
