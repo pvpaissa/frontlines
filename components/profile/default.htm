@@ -3,80 +3,91 @@
 <div class="basic-page">
     <div class="container">
         <div class="page-title">
-            <h1>{{ character.name }}</h1>
+            <h1>
+                {{ character.name }}
+            </h1>
             <div class="sub-box"></div>
         </div>
 
-        <p class="text-white">
-            <a href="/character/{{ character.character }}">
-                <i class="fa fa-arrow-left"></i> {{ character.name }}'s PvPaissa Profile</a>
-        </p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/character/{{ character.character }}">
+                        {{ character.name }}'s Profile
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Frontline's Profile</li>
+            </ol>
+        </nav>
 
         <table class="table text-white">
-            <thead>
+            <thead class="thead-dark">
             <tr>
-                <th></th>
-                <th>Rank</th>
-                <th>Wins</th>
+                <th>Expansion</th>
+                <th class="text-center">Rank</th>
+                <th class="text-center">Wins</th>
             </tr>
             </thead>
             <tfoot>
             <tr>
                 <td colspan="5">
-                    Note: Stats are recorded from your <a href="http://na.finalfantasyxiv.com/lodestone/ranking/frontline/weekly/201427/?worldname={{ character.server }}" target="_blank">characters server top 100</a> since July 7, 2014.</td>
+                    <a href="//na.finalfantasyxiv.com/lodestone/ranking/frontline/weekly/201427/?worldname={{ character.server }}" target="_blank">
+                        Stats since July 7, 2014.
+                    </a>
+                </td>
             </tr>
             </tfoot>
+            {% if arr %}
+            <tr>
+                <td colspan="2">A Realm Reborn</td>
+                <td class="text-center">{{ arr.wins }}</td>
+            </tr>
+            {% endif %}
+            {% if hw %}
+            <tr>
+                <td colspan="2">Heavensward</td>
+                <td class="text-center">{{ hw.wins }}</td>
+            </tr>
+            {% endif %}
+            {% if sb1 %}
+            <tr>
+                <td colspan="2">Stormblood</td>
+                <td class="text-center">{{ sb1.wins }}</td>
+            </tr>
+            {% endif %}
+            {% if sb2 %}
+            <tr>
+                <td colspan="2">Shadowbringers</td>
+                <td class="text-center">{{ sb2.wins }}</td>
+            </tr>
+            {% endif %}
             {% if character.frontlines %}
             <tr>
                 <td>Overall</td>
-                <td>{{ character.frontlines.rank }}</td>
-                <td>{{ character.frontlines.wins }}</td>
+                <td class="text-center">{{ character.frontlines.rank }}</td>
+                <td class="text-center">{{ character.frontlines.wins }}</td>
             </tr>
             {% else %}
             <tr>
                 <td colspan="4">No Frontlines Recorded.</td>
             </tr>
             {% endif %}
-            {% if arr %}
-            <tr>
-                <td colspan="2">A Realm Reborn</td>
-                <td>{{ arr.wins }}</td>
-            </tr>
-            {% endif %}
-            {% if hw %}
-            <tr>
-                <td colspan="2">Heavensward</td>
-                <td>{{ hw.wins }}</td>
-            </tr>
-            {% endif %}
-            {% if sb1 %}
-            <tr>
-                <td colspan="2">Stormblood</td>
-                <td>{{ sb1.wins }}</td>
-            </tr>
-            {% endif %}
-            {% if sb2 %}
-            <tr>
-                <td colspan="2">Shadowbringers</td>
-                <td>{{ sb2.wins }}</td>
-            </tr>
-            {% endif %}
         </table>
-
-
 
         <h3 class="text-white">Week By Week</h3>
         <table class="table text-white">
+            <thead class="thead-dark">
             <tr>
                 <th>Week</th>
-                <th>Rank</th>
-                <th>Wins</th>
+                <th class="text-center">Rank</th>
+                <th class="text-center">Wins</th>
             </tr>
-            {% for weekly in character.frontlines_week %}
+            </thead>
+            {% for weekly in character.frontlines_weekly %}
             <tr>
                 <td>{{ weekly.week|yearweek }}</td>
-                <td>{{ weekly.rank }}</td>
-                <td>{{ weekly.wins }}</td>
+                <td class="text-center">{{ weekly.rank }}</td>
+                <td class="text-center">{{ weekly.wins }}</td>
             </tr>
             {% else %}
             <tr>

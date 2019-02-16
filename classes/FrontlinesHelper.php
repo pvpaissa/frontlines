@@ -22,7 +22,7 @@ class FrontlinesHelper
         if ($lastWeek) {
             return $this->crawl($lastWeek);
         } else {
-            return $lastWeek;
+            return false;
         }
     }
 

@@ -42,10 +42,10 @@ class Profile extends ComponentBase
         $this->character = $this->page['character'] = $this->loadWeeklyStats();
 
         if ($this->character) {
-            $this->arr  = $this->page['arr']    = $this->getStats($this->character->id, '201427', '201526');
-            $this->hw   = $this->page['hw']     = $this->getStats($this->character->id, '201527', '201725');
-            $this->sb1  = $this->page['sb1']    = $this->getStats($this->character->id, '201726', '201925');
-            $this->sb2  = $this->page['sb2']    = $this->getStats($this->character->id, '201926', '999999');
+            $this->arr = $this->page['arr'] = $this->getStats($this->character->id, '201427', '201526');
+            $this->hw  = $this->page['hw']  = $this->getStats($this->character->id, '201527', '201725');
+            $this->sb1 = $this->page['sb1'] = $this->getStats($this->character->id, '201726', '201926');
+            $this->sb2 = $this->page['sb2'] = $this->getStats($this->character->id, '201927', '999999');
         }
     }
 
@@ -57,7 +57,7 @@ class Profile extends ComponentBase
                 'frontlines' => function($q) {
                     $q->orderBy('updated_at', 'desc');
                 },
-                'frontlines_week' => function($q) {
+                'frontlines_weekly' => function($q) {
                     $q->orderBy('week', 'desc');
                 }
             ])
@@ -80,6 +80,5 @@ class Profile extends ComponentBase
         } else {
             return false;
         }
-
     }
 }
