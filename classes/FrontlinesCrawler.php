@@ -5,7 +5,7 @@ namespace Cleanse\Frontlines\Classes;
 use Log;
 use GuzzleHttp;
 use Symfony\Component\DomCrawler\Crawler;
-use Cleanse\Pvpaissa\Classes\HelperDataCenters;
+use Cleanse\PvPaissa\Classes\HelperDataCenters;
 
 class FrontlinesCrawler
 {

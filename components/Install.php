@@ -5,7 +5,7 @@ namespace Cleanse\Frontlines\Components;
 use Auth;
 use Queue;
 use Cms\Classes\ComponentBase;
-use Cleanse\Pvpaissa\Classes\HelperDataCenters;
+use Cleanse\PvPaissa\Classes\HelperDataCenters;
 use Cleanse\Frontlines\Classes\FrontlinesHelper;
 
 class Install extends ComponentBase

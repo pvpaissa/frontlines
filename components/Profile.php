@@ -3,7 +3,7 @@
 namespace Cleanse\Frontlines\Components;
 
 use Cms\Classes\ComponentBase;
-use Cleanse\Pvpaissa\Models\Player;
+use Cleanse\PvPaissa\Models\Player;
 use Cleanse\Frontlines\Models\Weekly;
 
 class Profile extends ComponentBase

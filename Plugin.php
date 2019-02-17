@@ -7,7 +7,7 @@ use DB;
 use Log;
 use Queue;
 use System\Classes\PluginBase;
-use Cleanse\Pvpaissa\Classes\HelperDataCenters;
+use Cleanse\PvPaissa\Classes\HelperDataCenters;
 use Cleanse\Frontlines\Classes\FrontlinesHelper;
 use Cleanse\Frontlines\Models\Overall;
 
@@ -52,45 +52,45 @@ class Plugin extends PluginBase
         return $date->format('Y-m-d');
     }
 
-//    public function registerSchedule($schedule)
-//    {
-//        $schedule->call(function () {
-//            $when = new FrontlinesHelper('Balmung');
-//            $week = $when->nextWeek();
-//
-//            $dataCenters = new HelperDataCenters;
-//
-//            foreach ($dataCenters->datacenters as $dc) {
-//                foreach ($dc as $server) {
-//                    $data = [
-//                        'server' => $server,
-//                        'week' => $week
-//                    ];
-//
-//                    Queue::push('\Cleanse\Frontlines\Classes\Jobs\ScrapeFrontlines', $data);
-//                }
-//            }
-//
-//            Queue::push('\Cleanse\Frontlines\Classes\Jobs\RankFrontlinesWeekly', ['week' => $week]);
-//        })->cron('16 4 * * 1');
-//
-//        $schedule->call(function () {
-//            Log::info('Frontlines overall starting.');
-//
-//            $rank = 1;
-//            Overall::orderBy('wins', 'desc')
-//                ->chunk(100, function ($frontlinesPlayers) use (&$rank) {
-//                    DB::connection()->disableQueryLog();
-//                    foreach ($frontlinesPlayers as $player) {
-//                        $player->rank = $rank;
-//
-//                        $player->save();
-//
-//                        $rank++;
-//                    }
-//                });
-//
-//            Log::info('Frontlines overall done.');
-//        })->cron('50 4 * * 1');
-//    }
+    public function registerSchedule($schedule)
+    {
+        $schedule->call(function () {
+            $when = new FrontlinesHelper('Balmung');
+            $week = $when->nextWeek();
+
+            $dataCenters = new HelperDataCenters;
+
+            foreach ($dataCenters->datacenters as $dc) {
+                foreach ($dc as $server) {
+                    $data = [
+                        'server' => $server,
+                        'week' => $week
+                    ];
+
+                    Queue::push('\Cleanse\Frontlines\Classes\Jobs\ScrapeFrontlines', $data);
+                }
+            }
+
+            Queue::push('\Cleanse\Frontlines\Classes\Jobs\RankFrontlinesWeekly', ['week' => $week]);
+        })->cron('16 4 * * 1');
+
+        $schedule->call(function () {
+            Log::info('Frontlines overall starting.');
+
+            $rank = 1;
+            Overall::orderBy('wins', 'desc')
+                ->chunk(100, function ($frontlinesPlayers) use (&$rank) {
+                    DB::connection()->disableQueryLog();
+                    foreach ($frontlinesPlayers as $player) {
+                        $player->rank = $rank;
+
+                        $player->save();
+
+                        $rank++;
+                    }
+                });
+
+            Log::info('Frontlines overall done.');
+        })->cron('50 4 * * 1');
+    }
 }

@@ -3,8 +3,8 @@
 namespace Cleanse\Frontlines\Classes;
 
 use Log;
-use Cleanse\Pvpaissa\Classes\UpdateOrCreatePlayer;
-use Cleanse\Pvpaissa\Classes\HelperRankSort;
+use Cleanse\PvPaissa\Classes\UpdateOrCreatePlayer;
+use Cleanse\PvPaissa\Classes\HelperRankSort;
 use Cleanse\Frontlines\Classes\FrontlinesCrawler;
 use Cleanse\Frontlines\Models\Overall;
 use Cleanse\Frontlines\Models\Weekly;
