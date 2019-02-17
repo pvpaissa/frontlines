@@ -18,80 +18,83 @@
             </ol>
         </nav>
 
-        <table class="table text-white">
-            <thead class="thead-dark">
-            <tr>
-                <th>Expansion</th>
-                <th class="text-center">Rank</th>
-                <th class="text-center">Wins</th>
-            </tr>
-            </thead>
-            <tfoot>
-            <tr>
-                <td colspan="5">
-                    <a href="//na.finalfantasyxiv.com/lodestone/ranking/frontline/weekly/201427/?worldname={{ character.server }}" target="_blank">
-                        Stats since July 7, 2014.
-                    </a>
-                </td>
-            </tr>
-            </tfoot>
-            {% if arr %}
-            <tr>
-                <td colspan="2">A Realm Reborn</td>
-                <td class="text-center">{{ arr.wins }}</td>
-            </tr>
-            {% endif %}
-            {% if hw %}
-            <tr>
-                <td colspan="2">Heavensward</td>
-                <td class="text-center">{{ hw.wins }}</td>
-            </tr>
-            {% endif %}
-            {% if sb1 %}
-            <tr>
-                <td colspan="2">Stormblood</td>
-                <td class="text-center">{{ sb1.wins }}</td>
-            </tr>
-            {% endif %}
-            {% if sb2 %}
-            <tr>
-                <td colspan="2">Shadowbringers</td>
-                <td class="text-center">{{ sb2.wins }}</td>
-            </tr>
-            {% endif %}
-            {% if character.frontlines %}
-            <tr>
-                <td>Overall</td>
-                <td class="text-center">{{ character.frontlines.rank }}</td>
-                <td class="text-center">{{ character.frontlines.wins }}</td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="4">No Frontlines Recorded.</td>
-            </tr>
-            {% endif %}
-        </table>
+        <div class="pvp-table">
+            <div class="table text-white">
+                <div class="thead">
+                    <span>Expansion</span>
+                    <span class="text-center">Rank</span>
+                    <span class="text-center">Wins</span>
+                </div>
+                {% if arr %}
+                <div class="tr">
+                    <span>A Realm Reborn</span>
+                    <span></span>
+                    <span class="text-center">{{ arr.wins }}</span>
+                </div>
+                {% endif %}
+                {% if hw %}
+                <div class="tr">
+                    <span>Heavensward</span>
+                    <span></span>
+                    <span class="text-center">{{ hw.wins }}</span>
+                </div>
+                {% endif %}
+                {% if sb1 %}
+                <div class="tr">
+                    <span>Stormblood</span>
+                    <span></span>
+                    <span class="text-center">{{ sb1.wins }}</span>
+                </div>
+                {% endif %}
+                {% if sb2 %}
+                <div class="tr">
+                    <span>Shadowbringers</span>
+                    <span></span>
+                    <span class="text-center">{{ sb2.wins }}</span>
+                </div>
+                {% endif %}
+                {% if character.frontlines %}
+                <div class="tr">
+                    <span>Overall</span>
+                    <span class="text-center">{{ character.frontlines.rank }}</span>
+                    <span class="text-center">{{ character.frontlines.wins }}</span>
+                </div>
+                {% else %}
+                <div class="p-3">
+                    <span>There are no rankings recorded.</span>
+                </div>
+                {% endif %}
+                <a class="tr"
+                   href="//na.finalfantasyxiv.com/lodestone/ranking/frontline/weekly/201427/?worldname={{ character.server }}" target="_blank">
+                    <span>
+                            Stats since July 7, 2014.
+                    </span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+        </div>
 
         <h3 class="text-white">Week By Week</h3>
-        <table class="table text-white">
-            <thead class="thead-dark">
-            <tr>
-                <th>Week</th>
-                <th class="text-center">Rank</th>
-                <th class="text-center">Wins</th>
-            </tr>
-            </thead>
-            {% for weekly in character.frontlines_weekly %}
-            <tr>
-                <td>{{ weekly.week|yearweek }}</td>
-                <td class="text-center">{{ weekly.rank }}</td>
-                <td class="text-center">{{ weekly.wins }}</td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="5">No Frontlines Records</td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div class="pvp-table">
+            <div class="table text-white">
+                <div class="thead">
+                    <span>Week</span>
+                    <span class="text-center">Rank</span>
+                    <span class="text-center">Wins</span>
+                </div>
+                {% for weekly in character.frontlines_weekly %}
+                <div class="tr">
+                    <span>{{ weekly.week|yearweek }}</span>
+                    <span class="text-center">{{ weekly.rank }}</span>
+                    <span class="text-center">{{ weekly.wins }}</span>
+                </div>
+                {% else %}
+                <div class="p-3">
+                    <span>There are no rankings recorded.</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>

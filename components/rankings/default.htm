@@ -13,38 +13,33 @@
                target="_blank">{{ last_update|date("F j, Y") }}</a>.
         </p>
 
-        <div class="table-responsive-sm">
-            <table id="rankings" class="table text-white">
-                <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Name</th>
-                    <th>Data Center</th>
-                    <th>Server</th>
-                    <th>Wins</th>
-                </tr>
-                </thead>
-                <tbody>
+        <div class="pvp-table">
+            <div id="rankings" class="table text-white">
+                <div class="thead">
+                    <span>Rank</span>
+                    <span>Name</span>
+                    <span>Data Center</span>
+                    <span>Server</span>
+                    <span>Wins</span>
+                </div>
                 {% for frontline in rankings %}
-                <tr class="clickable" data-href="/character/{{ frontline.player.character }}/frontlines">
-                    <td>{% if frontline.rank == 8675309 %} -- {% else %} {{ frontline.rank }} {% endif %}</td>
-                    <td>
-                        <a href="/character/{{ frontline.player.character }}/frontlines">
-                            <strong>{{ frontline.player.name }}</strong></a>
-                    </td>
-                    <td class="hidden-md-down">{{ frontline.player.data_center }}</td>
-                    <td class="hidden-md-down">{{ frontline.player.server }}</td>
-                    <td>{{ frontline.wins }}</td>
-                </tr>
+                <a class="tr" href="/character/{{ frontline.player.character }}/frontlines">
+                    <span>{% if frontline.rank == 8675309 %} -- {% else %} {{ frontline.rank }} {% endif %}</span>
+                    <span>
+                        {{ frontline.player.name }}
+                    </span>
+                    <span class="hidden-md-down">{{ frontline.player.data_center }}</span>
+                    <span class="hidden-md-down">{{ frontline.player.server }}</span>
+                    <span>{{ frontline.wins }}</span>
+                </a>
                 {% else %}
-                <tr>
-                    <td class="no-data">There are no rankings recorded.</td>
-                </tr>
+                <div class="p-3">
+                    <span>There are no rankings recorded.</span>
+                </div>
                 {% endfor %}
-                </tbody>
-            </table>
+            </div>
 
-            <nav class="cleanse-news" aria-label="Frontlines pagination.">
+            <nav aria-label="Frontlines pagination.">
                 {{ rankings.render|raw }}
             </nav>
         </div>
